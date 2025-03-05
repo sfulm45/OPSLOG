@@ -1,0 +1,34 @@
+*{
+    text-align: center
+}
+
+body {
+    margin: 0;
+    padding: 0;
+  }
+
+  
+
+  #OPS-Logo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100px;
+    height: auto;
+  }
+
+  form > img {
+    display: none;
+  }
+
+  .opslog.html{
+    background-color: black;
+  }
+
+  .opslog.html{
+    color:white
+  }
+
+
+  
+  

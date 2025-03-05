@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>OPS Log Entry</title>
+  <style>
+    /* Reset some default styling */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      padding-top: 70px; /* To prevent content from hiding under the fixed navbar */
+    }
+
+    /* Fixed Navbar */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: #333;
+      z-index: 1000;
+    }
+
+    .navbar {
+      display: flex;
+      align-items: center;
+      padding: 10px 20px;
+    }
+
+    .navbar .logo img {
+      height: 40px; /* Adjust logo height as needed */
+      width: auto;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      margin-left: auto;
+    }
+
+    .nav-links li {
+      margin: 0 10px;
+    }
+
+    .nav-links li a {
+      color: #fff;
+      text-decoration: none;
+      padding: 8px 12px;
+      transition: background 0.3s ease;
+    }
+
+    .nav-links li a:hover {
+      background: #555;
+      border-radius: 4px;
+    }
+
+    /* Form Container */
+    .form-section {
+      max-width: 800px;
+      margin: 20px auto;
+      background: #fff;
+      padding: 20px 30px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .form-section h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    /* Fieldset styling */
+    fieldset {
+      border: 1px solid #ddd;
+      margin-bottom: 20px;
+      padding: 15px;
+      border-radius: 5px;
+    }
+
+    fieldset legend {
+      font-weight: bold;
+      padding: 0 10px;
+      color: #555;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .form-group label {
+      margin-bottom: 5px;
+      color: #333;
+    }
+
+    .form-group input[type="text"],
+    .form-group input[type="datetime-local"],
+    .form-group select,
+    .form-group textarea {
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+
+    .form-group textarea {
+      resize: vertical;
+    }
+
+    .form-group input[type="file"] {
+      padding: 3px;
+    }
+
+    /* Submit Button */
+    button[type="submit"] {
+      width: 100%;
+      padding: 12px;
+      background: #333;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button[type="submit"]:hover {
+      background: #555;
+    }
+  </style>
+</head>
+<body>
+  <!-- Fixed Menu Bar -->
+  <header>
+    <nav class="navbar">
+      <div class="logo">
+        <a href="./home.html">
+          <img src="../Images/OPS Logo (Without Border).png" alt="OPS Logo">
+        </a>
+      </div>
+      <ul class="nav-links">
+        <li><a href="./home.html">Dashboard</a></li>
+        <li><a href="./HR.html">Human Resources</a></li>
+        <li><a href="./Vehicles.html">Vehicles</a></li>
+        <li><a href="./home.html">Reporting</a></li>
+        <li><a href="./home.html">Schedule</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Log Entry Form -->
+  <main>
+    <section class="form-section">
+      <h2>Vehicle 40 Log Entry Form</h2>
+      <form action="/submit-log" method="post" enctype="multipart/form-data">
+        <!-- Date / Time -->
+        <fieldset>
+          <legend>Date / Time</legend>
+          <div class="form-group">
+            <label for="datetime">Date and Time:</label>
+            <input type="datetime-local" id="datetime" name="datetime" required>
+          </div>
+        </fieldset>
+
+        <!-- Vehicle Mechanical Report -->
+        <fieldset>
+          <legend>Vehicle Mechanical Report</legend>
+          <div class="form-group">
+            <label for="mileage">Mileage Read Out:</label>
+            <input type="text" id="mileage" name="mileage" placeholder="Enter mileage" required>
+          </div>
+          <div class="form-group">
+            <label for="oil-level">Oil Level:</label>
+            <select id="oil-level" name="oil-level" required>
+              <option value="">Select...</option>
+              <option value="low">Low</option>
+              <option value="normal">Normal</option>
+              <option value="high">High</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="transmission-level">Transmission Level:</label>
+            <select id="transmission-level" name="transmission-level" required>
+              <option value="">Select...</option>
+              <option value="low">Low</option>
+              <option value="normal">Normal</option>
+              <option value="high">High</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="coolant-level">Coolant Level:</label>
+            <select id="coolant-level" name="coolant-level" required>
+              <option value="">Select...</option>
+              <option value="low">Low</option>
+              <option value="normal">Normal</option>
+              <option value="high">High</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="brake-fluid">Brake Fluid Level:</label>
+            <select id="brake-fluid" name="brake-fluid" required>
+              <option value="">Select...</option>
+              <option value="low">Low</option>
+              <option value="normal">Normal</option>
+              <option value="high">High</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="brake-pad">Brake Pad/Disc Condition:</label>
+            <select id="brake-pad" name="brake-pad" required>
+              <option value="">Select...</option>
+              <option value="poor">Poor</option>
+              <option value="fair">Fair</option>
+              <option value="good">Good</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="tire-condition">Tire Condition:</label>
+            <select id="tire-condition" name="tire-condition" required>
+              <option value="">Select...</option>
+              <option value="worn">Worn</option>
+              <option value="ok">OK</option>
+              <option value="new">New</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="lights-blinkers">Condition of Lights and Blinkers:</label>
+            <select id="lights-blinkers" name="lights-blinkers" required>
+              <option value="">Select...</option>
+              <option value="faulty">Faulty</option>
+              <option value="functional">Functional</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="windows-glass">Windows/Glass:</label>
+            <select id="windows-glass" name="windows-glass" required>
+              <option value="">Select...</option>
+              <option value="cracked">Cracked</option>
+              <option value="clear">Clear</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="dashboard-lights">Illuminated Dashboard Warning Lights:</label>
+            <select id="dashboard-lights" name="dashboard-lights" required>
+              <option value="">Select...</option>
+              <option value="none">None</option>
+              <option value="present">Present</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="additional-notes">Additional Notes:</label>
+            <textarea id="additional-notes" name="additional-notes" rows="4" placeholder="Enter any additional notes..."></textarea>
+          </div>
+        </fieldset>
+
+        <!-- Exterior Photos -->
+        <fieldset>
+          <legend>Exterior Photos</legend>
+          <div class="form-group">
+            <label for="exterior-driver-photo">Exterior Driver Side Photo:</label>
+            <input type="file" id="exterior-driver-photo" name="exterior-driver-photo" accept="image/*" required>
+          </div>
+          <div class="form-group">
+            <label for="exterior-passenger-photo">Exterior Passenger Side Photo:</label>
+            <input type="file" id="exterior-passenger-photo" name="exterior-passenger-photo" accept="image/*" required>
+          </div>
+          <div class="form-group">
+            <label for="exterior-front-photo">Exterior Front Photo:</label>
+            <input type="file" id="exterior-front-photo" name="exterior-front-photo" accept="image/*" required>
+          </div>
+          <div class="form-group">
+            <label for="exterior-rear-photo">Exterior Rear Photo:</label>
+            <input type="file" id="exterior-rear-photo" name="exterior-rear-photo" accept="image/*" required>
+          </div>
+        </fieldset>
+
+        <!-- Vehicle Documents -->
+        <fieldset>
+          <legend>Vehicle Documents</legend>
+          <div class="form-group">
+            <label for="vehicle-registration">Vehicle Registration:</label>
+            <select id="vehicle-registration" name="vehicle-registration" required>
+              <option value="">Select...</option>
+              <option value="valid">Valid</option>
+              <option value="expired">Expired</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="proof-of-insurance">Proof of Insurance:</label>
+            <select id="proof-of-insurance" name="proof-of-insurance" required>
+              <option value="">Select...</option>
+              <option value="valid">Valid</option>
+              <option value="expired">Expired</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="vehicle-gas-card">Vehicle Gas Card:</label>
+            <select id="vehicle-gas-card" name="vehicle-gas-card" required>
+              <option value="">Select...</option>
+              <option value="present">Present</option>
+              <option value="missing">Missing</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="violations">Violations/CIRs/DARs:</label>
+            <select id="violations" name="violations" required>
+              <option value="">Select...</option>
+              <option value="Needed">Needed</option>
+              <option value="Present">Present</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="eacai-materials">EACAI Materials:</label>
+            <select id="eacai-materials" name="eacai-materials" required>
+              <option value="">Select...</option>
+              <option value="Present">Present</option>
+              <option value="Needed">Needed</option>
+            </select>
+          </div>
+        </fieldset>
+
+        <!-- Trunk Area -->
+        <fieldset>
+          <legend>Trunk Area</legend>
+          <div class="form-group">
+            <label for="extra-fluids">Extra Fluids:</label>
+            <select id="extra-fluids" name="extra-fluids" required>
+              <option value="">Select...</option>
+              <option value="present">Present</option>
+              <option value="missing">Missing</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="spare-tire">Spare Tire:</label>
+            <select id="spare-tire" name="spare-tire" required>
+              <option value="">Select...</option>
+              <option value="present">Present</option>
+              <option value="missing">Missing</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="hydraulic-floor-jack">Hydraulic Floor Jack:</label>
+            <select id="hydraulic-floor-jack" name="hydraulic-floor-jack" required>
+              <option value="">Select...</option>
+              <option value="present">Present</option>
+              <option value="missing">Missing</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="trunk-photo">Photo of Extra Fluids (Trunk Interior):</label>
+            <input type="file" id="trunk-photo" name="trunk-photo" accept="image/*" required>
+          </div>
+        </fieldset>
+
+        <!-- Vehicle Interior -->
+        <fieldset>
+          <legend>Vehicle Interior</legend>
+          <div class="form-group">
+            <label for="vehicle-clean">Is the vehicle clean?</label>
+            <select id="vehicle-clean" name="vehicle-clean" required>
+              <option value="">Select...</option>
+              <option value="yes">Yes</option>
+              <option value="no">No</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="front-seat-photo">Photos of Front Seat Interior:</label>
+            <input type="file" id="front-seat-photo" name="front-seat-photo" accept="image/*" required>
+          </div>
+          <div class="form-group">
+            <label for="backseat-photo">Photos of Backseat Interior:</label>
+            <input type="file" id="backseat-photo" name="backseat-photo" accept="image/*" required>
+          </div>
+          <div class="form-group">
+            <label for="dash-camera">Does your Vehicle have a dash camera?</label>
+            <select id="dash-camera" name="dash-camera" required>
+              <option value="">Select...</option>
+              <option value="yes">Yes</option>
+              <option value="no">No</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="camera-photo">Photo of Camera (If none, take photo of windshield where camera should be):</label>
+            <input type="file" id="camera-photo" name="camera-photo" accept="image/*" required>
+          </div>
+        </fieldset>
+
+        <!-- Gear Checkout -->
+        <fieldset>
+          <legend>Gear Checkout</legend>
+          <div class="form-group">
+            <label for="body-camera-issued">Body Camera Issued:</label>
+            <select id="body-camera-issued" name="body-camera-issued" required>
+              <option value="">Select...</option>
+              <option value="Cam 1">Cam 1</option>
+              <option value="Cam 2">Cam 2</option>
+              <option value="Cam 3">Cam 3</option>
+              <option value="Cam 4">Cam 4</option>
+              <option value="Cam 5">Cam 5</option>
+              <option value="Cam 6">Cam 6</option>
+              <option value="None">None</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="flashlight-issued">Flashlight Issued:</label>
+            <select id="flashlight-issued" name="flashlight-issued" required>
+              <option value="">Select...</option>
+              <option value="Flashlight 1">Flashlight 1</option>
+              <option value="Flashlight 2">Flashlight 2</option>
+              <option value="Flashlight 3">Flashlight 3</option>
+              <option value="Flashlight 4">Flashlight 4</option>
+              <option value="Flashlight 5">Flashlight 5</option>
+              <option value="Flashlight 6">Flashlight 6</option>
+              <option value="None">None</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="property-keys-issued">Property Keys Issued:</label>
+            <select id="property-keys-issued" name="property-keys-issued" required>
+              <option value="">Select...</option>
+              <option value="Area 30A">Area 30A</option>
+              <option value="Area 30B">Area 30B</option>
+              <option value="Area 31">Area 31</option>
+              <option value="Area 36">Area 36</option>
+              <option value="Area 39">Area 39</option>
+              <option value="Area 53">Area 53</option>
+              <option value="Area 55">Area 55</option>
+              <option value="Area 65">Area 65</option>
+              <option value="Area 68">Area 68</option>
+              <option value="Area 80">Area 80</option>
+              <option value="Area 89">Area 89</option>
+              <option value="Area 92">Area 92</option>
+              <option value="Dayside / None Obtained">Dayside / None Obtained</option>
+            </select>
+          </div>
+        </fieldset>
+
+        <div class="form-group">
+          <button type="submit">Submit Log Entry</button>
+        </div>
+      </form>
+    </section>
+  </main>
+</body>
+</html>

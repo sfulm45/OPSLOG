@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>OPSLOG Home</title>
+  <style>
+    /* Reset some default styling */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      padding-top: 70px; /* To prevent content from hiding under the fixed navbar */
+    }
+
+    /* Fixed Navbar */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: #333;
+      z-index: 1000;
+    }
+
+    .navbar {
+      display: flex;
+      align-items: center;
+      padding: 10px 20px;
+    }
+
+    .navbar .logo img {
+      height: 40px; /* Adjust logo height as needed */
+      width: auto;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      margin-left: auto;
+    }
+
+    .nav-links li {
+      margin: 0 10px;
+    }
+
+    .nav-links li a {
+      color: #fff;
+      text-decoration: none;
+      padding: 8px 12px;
+      transition: background 0.3s ease;
+    }
+
+    .nav-links li a:hover {
+      background: #555;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Fixed Menu Bar -->
+  <header>
+    <nav class="navbar">
+      <div class="logo">
+        <a href="./home.html">
+          <img src="./Images/OPS Logo (Without Border).png" alt="OPS Logo">
+        </a>
+      </div>
+      <ul class="nav-links">
+        <li><a href="./home.html">Dashboard</a></li>
+        <li><a href="./HR.html">Human Resources</a></li>
+        <li><a href="./Vehicles.html">Vehicles</a></li>
+        <li><a href="./home.html">Reporting</a></li>
+        <li><a href="./home.html">Schedule</a></li>
+        <!-- Logout button directs back to opslog.html -->
+        <li><a href="./opslog.html">Logout</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <section class="home-content" style="padding: 20px;">
+      <h1>Welcome to OPSLOG Home</h1>
+      <p>This is your home page content.</p>
+    </section>
+  </main>
+</body>
+</html>
+
