@@ -3,20 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>OPSLOG Home</title>
+  <title>OPSLOG Reporting</title>
+  <link rel="icon" href="./Images/OPS Logo (Without Border).png">
   <style>
+    /* Reset default styles */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
-
+    
     body {
       font-family: Arial, sans-serif;
       background: #f4f4f4;
-      padding-top: 70px; /* To prevent content from hiding under the fixed navbar */
+      padding-top: 70px; /* Space for fixed navbar */
     }
-
+    
+    /* Header and Navbar Styling */
     header {
       position: fixed;
       top: 0;
@@ -25,68 +28,148 @@
       background: #333;
       z-index: 1000;
     }
-
+    
     .navbar {
       display: flex;
       align-items: center;
       padding: 10px 20px;
     }
-
+    
     .navbar .logo img {
-      height: 40px; 
+      height: 40px;
       width: auto;
     }
-
+    
     .nav-links {
       list-style: none;
       display: flex;
       margin-left: auto;
     }
-
+    
     .nav-links li {
       margin: 0 10px;
     }
-
+    
     .nav-links li a {
       color: #fff;
       text-decoration: none;
       padding: 8px 12px;
       transition: background 0.3s ease;
     }
-
+    
     .nav-links li a:hover {
       background: #555;
       border-radius: 4px;
     }
+    
+    /* Loader Container Styles */
+    #loader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: #06172f;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+    }
+    
+    .loader-logo {
+      width: 15vw;
+      margin-bottom: 2rem;
+    }
+    
+    .spinner {
+      border: 16px solid #2c2c2c;
+      border-top: 16px solid #1f3450;
+      border-radius: 50%;
+      width: 7.5vh;
+      height: 7.5vh;
+      animation: spin 2s linear infinite;
+    }
+    
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    
+    /* Main Content (hidden until loader is dismissed) */
+    #main-content {
+      display: none;
+    }
+    
+    /* Reporting Form Builder Section */
+    #form-builder {
+      padding: 20px;
+    }
+    
+    #form-builder h2 {
+      margin-bottom: 1rem;
+    }
+    
+    #form-builder button {
+      margin: 0.5rem;
+      padding: 10px 15px;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
-  <header>
-    <nav class="navbar">
-      <div class="logo">
-        <a href="./home.html">
-          <img src="./Images/OPS Logo (Without Border).png" alt="OPS Logo">
-        </a>
-      </div>
-      <ul class="nav-links">
-        <li><a href="./home.html">Dashboard</a></li>
-        <li><a href="./HR.html">Human Resources</a></li>
-        <li><a href="./Vehicles.html">Vehicles</a></li>
-        <li><a href="./home.html">Reporting</a></li>
-        <li><a href="./home.html">Schedule</a></li>
-        <li><a href="./index.html">Logout</a></li>
-      </ul>
-    </nav>
-  </header>
-  
-  <div id="form-builder">
-    <h2>Customize Your Log Entry Form</h2>
-    <button onclick="addField('text')">Add Text Field</button>
-    <button onclick="addField('datetime-local')">Add Date Field</button>
-    <div id="builder-output">
+  <!-- Loader Screen -->
+  <div id="loader">
+    <div class="loader-logo">
+      <!-- Custom SVG logo -->
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="50" cy="50" r="40" stroke="#bd2535" stroke-width="5" fill="none" />
+        <text x="50" y="57" text-anchor="middle" fill="#bd2535" font-size="20px" font-family="Arial">OPS</text>
+      </svg>
     </div>
-    <button onclick="saveFormConfig()">Save Form</button>
+    <div class="spinner"></div>
   </div>
+  
+  <!-- Main Reporting Content -->
+  <div id="main-content">
+    <header>
+      <nav class="navbar">
+        <div class="logo">
+          <a href="./home.html">
+            <img src="./Images/OPS Logo (Without Border).png" alt="OPS Logo">
+          </a>
+        </div>
+        <ul class="nav-links">
+          <li><a href="./home.html">Dashboard</a></li>
+          <li><a href="./HR.html">Human Resources</a></li>
+          <li><a href="./Vehicles.html">Vehicles</a></li>
+          <li><a href="./Reporting.html">Reporting</a></li>
+          <li><a href="./home.html">Schedule</a></li>
+          <li><a href="./index.html">Logout</a></li>
+        </ul>
+      </nav>
+    </header>
+    
+    <!-- Reporting Form Builder Section -->
+    <div id="form-builder">
+      <h2>Customize Your Log Entry Form</h2>
+      <button onclick="addField('text')">Add Text Field</button>
+      <button onclick="addField('datetime-local')">Add Date Field</button>
+      <div id="builder-output"></div>
+      <button onclick="saveFormConfig()">Save Form</button>
+    </div>
+  </div>
+  
+  <!-- External JavaScript for form functionality -->
   <script src="./form.js"></script>
+  <script>
+    // Simulate a delay then reveal main content
+    window.addEventListener('load', function() {
+      setTimeout(function() {
+        document.getElementById('loader').style.display = 'none';
+        document.getElementById('main-content').style.display = 'block';
+      }, 2000); // Adjust delay as necessary
+    });
+  </script>
 </body>
 </html>
